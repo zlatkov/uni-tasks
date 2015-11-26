@@ -15,3 +15,4 @@
       (merge-sorted (merge-sort (take lst (quotient (length lst) 2)) pred) (merge-sort (drop lst (quotient (length lst) 2)) pred) pred)
       )
   )
+

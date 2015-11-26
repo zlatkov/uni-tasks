@@ -31,4 +31,3 @@
       )
   ) 
 
-(histogram '(#\a #\b #\c #\d #\b #\e #\b))

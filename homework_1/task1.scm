@@ -11,4 +11,5 @@
 
 (define (filter-properly-divisible l) (filter (lambda(x) (= (remainder x 3) 2)) l))
 
-(define (sum-negative-list l) (apply + (to-negative-list (filter-properly-divisible l) )))
+(define (sum-negative-list l) (apply + (to-negative-list (filter-properly-divisible l))))
+

@@ -13,3 +13,4 @@
 (define (higher-than-average-helper students x) (map get-student-faculty-number (filter (lambda (student) (> (get-student-grade student) x)) students)))
 
 (define (higher-than-average students) (higher-than-average-helper students (average students)))
+
