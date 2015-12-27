@@ -1,6 +1,11 @@
 package com.zlatkov;
 
-import java.util.*;
+import com.zlatkov.algorithms.AStart;
+import com.zlatkov.algorithms.BeamSearch;
+import com.zlatkov.algorithms.Bfs;
+import com.zlatkov.algorithms.PathFinder;
+
+import java.util.Scanner;
 
 public class Main {
 
@@ -32,27 +37,11 @@ public class Main {
 
     public static void main(String[] args) {
         int[][] initialStateValues = readInitialStateValues();
-        Set<BoardState> visitedStates = new HashSet<>();
+        BoardState initialState = new BoardState(initialStateValues);
 
-        Queue<BoardState> states = new LinkedList<>();
-        states.add(new BoardState(initialStateValues));
-        while (!states.isEmpty()) {
-            BoardState state = states.remove();
-            visitedStates.add(state);
+        PathFinder algorithm = new AStart(initialState);
+        BoardState finalState = algorithm.findPath();
+        outputState(finalState);
 
-            if (BoardStateManager.isFinal(state)) {
-                outputState(state);
-                break;
-            }
-            else {
-                List<BoardState> adjacentStates = BoardStateManager.generateAdjacent(state);
-                for (BoardState adjacentState : adjacentStates) {
-                    if (!visitedStates.contains(adjacentState)) {
-                        states.add(adjacentState);
-                    }
-                }
-            }
-
-        }
     }
 }
