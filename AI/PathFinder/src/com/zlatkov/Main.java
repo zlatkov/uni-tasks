@@ -39,7 +39,7 @@ public class Main {
         int[][] initialStateValues = readInitialStateValues();
         BoardState initialState = new BoardState(initialStateValues);
 
-        PathFinder algorithm = new AStart(initialState);
+        PathFinder algorithm = new BeamSearch(initialState, 2);
         BoardState finalState = algorithm.findPath();
         outputState(finalState);
 
