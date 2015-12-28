@@ -13,10 +13,11 @@ public class AStart extends PathFinder {
     @Override
     public BoardState findPath() {
         Queue<Node> queue = new PriorityQueue<>();
-        Set<BoardState> visited = new HashSet<>();
+        Map<BoardState, Integer> realDistances = new HashMap<>();
 
-        queue.add(new Node(this.getInitialState(), 0));
-        visited.add(this.getInitialState());
+        queue.add(new Node(this.getInitialState(), Heuristics.calculateManhattanDistance(this.getInitialState())));
+        realDistances.put(this.getInitialState(), 0);
+
         while (!queue.isEmpty()) {
             Node node = queue.remove();
             BoardState state = node.getState();
@@ -27,10 +28,10 @@ public class AStart extends PathFinder {
             else {
                 List<BoardState> adjacentStates = BoardStateManager.generateAdjacent(state);
                 for (BoardState adjacentState : adjacentStates) {
-                    if (!visited.contains(adjacentState)) {
-                        visited.add(adjacentState);
-                        int estimatedDistance = node.getDistance() + Heuristics.calculateManhattanDistance(adjacentState);
-                        queue.add(new Node(adjacentState, estimatedDistance));
+                    int distance = realDistances.get(state) + 1;
+                    if (!realDistances.containsKey(adjacentState) || realDistances.get(adjacentState) > distance) {
+                        realDistances.put(adjacentState, distance);
+                        queue.add(new Node(adjacentState, distance + Heuristics.calculateManhattanDistance(adjacentState)));
                     }
                 }
             }
