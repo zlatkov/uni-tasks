@@ -3,9 +3,9 @@ package com.zlatkov;
 import java.util.*;
 
 public class Board {
-    private static int[] rowOccurrences;
-    private static int[] firstDiagonalOccurrences;
-    private static int[] secondDiagonalOccurrences;
+    private int[] rowOccurrences;
+    private int[] firstDiagonalOccurrences;
+    private int[] secondDiagonalOccurrences;
     private final int[] queenRows;
 
     public Board(int size) {
@@ -50,18 +50,18 @@ public class Board {
         List<Integer> conflicts = new ArrayList<>();
 
         int queensCount = this.queenRows.length;
-        rowOccurrences = new int[queensCount];
-        firstDiagonalOccurrences = new int[2 * queensCount - 1];
-        secondDiagonalOccurrences = new int[2 * queensCount - 1];
+        this.rowOccurrences = new int[queensCount];
+        this.firstDiagonalOccurrences = new int[2 * queensCount - 1];
+        this.secondDiagonalOccurrences = new int[2 * queensCount - 1];
 
         for (int i = 0; i < queensCount; i++) {
             int queenRow = this.queenRows[i];
-            rowOccurrences[queenRow]++;
+            this.rowOccurrences[queenRow]++;
 
             int firstDiagonalIndex = getFirstDiagonalIndex(queenRow, i);
             int secondDiagonalIndex = getSecondDiagonalIndex(queenRow, i);
-            firstDiagonalOccurrences[firstDiagonalIndex]++;
-            secondDiagonalOccurrences[secondDiagonalIndex]++;
+            this.firstDiagonalOccurrences[firstDiagonalIndex]++;
+            this.secondDiagonalOccurrences[secondDiagonalIndex]++;
         }
 
         for (int i = 0; i < queensCount; i++) {
@@ -88,8 +88,8 @@ public class Board {
         int firstDiagonalIndex = getFirstDiagonalIndex(row, col);
         int secondDiagonalIndex = getSecondDiagonalIndex(row, col);
 
-        return rowOccurrences[row] +
-            firstDiagonalOccurrences[firstDiagonalIndex] +
-            secondDiagonalOccurrences[secondDiagonalIndex] - 3;
+        return this.rowOccurrences[row] +
+                this.firstDiagonalOccurrences[firstDiagonalIndex] +
+                this.secondDiagonalOccurrences[secondDiagonalIndex] - 3;
     }
 }
