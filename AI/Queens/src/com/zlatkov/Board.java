@@ -46,7 +46,7 @@ public class Board {
         this.queenRows[column] = minConflictsRows.get(Util.getRandom((minConflictsRows.size())));
     }
 
-    public List<Integer> getConflictColumns() {
+    public List<Integer> getConflictingColumns() {
         List<Integer> conflicts = new ArrayList<>();
 
         int queensCount = this.queenRows.length;

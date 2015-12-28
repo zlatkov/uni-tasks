@@ -24,12 +24,12 @@ public class Main {
 
         Board board = new Board(n);
         int iterations = 0;
-        List<Integer> conflicts = board.getConflictColumns();
+        List<Integer> conflicts = board.getConflictingColumns();
 
         while (conflicts.size() > 0 && iterations < MAX_ITERATIONS) {
-            int conflictCol = conflicts.get(Util.getRandom(conflicts.size()));
-            board.moveQueenAtColumn(conflictCol);
-            conflicts = board.getConflictColumns();
+            int conflictingColumn = conflicts.get(Util.getRandom(conflicts.size()));
+            board.moveQueenAtColumn(conflictingColumn);
+            conflicts = board.getConflictingColumns();
             iterations++;
         }
 
