@@ -24,16 +24,16 @@ public class Main {
 
         Board board = new Board(n);
         int iterations = 0;
-        List<Integer> conflicts = board.getConflictingColumns();
+        List<Integer> conflictingColumns = board.getConflictingColumns();
 
-        while (conflicts.size() > 0 && iterations < MAX_ITERATIONS) {
-            int conflictingColumn = conflicts.get(Util.getRandom(conflicts.size()));
+        while (conflictingColumns.size() > 0 && iterations < MAX_ITERATIONS) {
+            int conflictingColumn = conflictingColumns.get(Util.getRandom(conflictingColumns.size()));
             board.moveQueenAtColumn(conflictingColumn);
-            conflicts = board.getConflictingColumns();
+            conflictingColumns = board.getConflictingColumns();
             iterations++;
         }
 
-        if (conflicts.size() > 0) {
+        if (conflictingColumns.size() > 0) {
             System.out.print("Did not manage to find a solution.");
         }
         else {
