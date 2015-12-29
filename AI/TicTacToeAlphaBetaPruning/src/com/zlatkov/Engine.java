@@ -33,7 +33,7 @@ public class Engine {
         }
 
         return this.equalCellsByOffset(0, 0, 1, 1) // First diagonal
-            || this.equalCellsByOffset(Board.SIZE - 1, 0, -1, 1);
+            || this.equalCellsByOffset(Board.SIZE - 1, 0, -1, 1); // Second diagonal
     }
 
     public boolean hasEmptyCells() {
